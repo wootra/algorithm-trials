@@ -1,6 +1,6 @@
 # Bear and Steady Gene algorithm
 
-the question is [here](Question.html)
+the question is [here](Question.html) or [HackerRank](https://www.hackerrank.com/challenges/bear-and-steady-gene/problem)
 this algorithm's core solution (IMO) is,
 
 1. count all the gene's factors
