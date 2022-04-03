@@ -98,6 +98,7 @@ function steadyGene(gene) {
 
             search[gene[j]]++; //increasing sample
             if (minSize !== 0 && j - i + 1 > minSize) {
+                search[gene[i]]--;
                 i++;
                 //if minSize is already smaller than this boundary,
                 //do not need to find another bigger answer
