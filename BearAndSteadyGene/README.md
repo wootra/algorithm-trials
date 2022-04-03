@@ -91,18 +91,25 @@ const isFound = () => {
 for (i = 0; i < minGrpLen; i++) {
     search[gene[i]]++;
 }
+if (isFound()) {
+    return minGrpLen;
+}
 
-consoleLog({ search, factorsToChange });
+consoleLog({ search, factorsToChange, minGrpLen });
 // with window moving, find num of factorsToChange
-for (i = 0, j = minGrpLen; i < totalLen - minGrpLen, j < totalLen; ) {
-    if (i + minGrpLen <= j && isFound()) {
-        if (minSize === 0) minSize = j - i;
-        else minSize = Math.min(minSize, j - i);
+i = 0;
+j = i + minGrpLen - 1;
+while (true) {
+    if (!isFound()) {
+        j++;
+        if (j >= totalLen) break;
+        search[gene[++j]]++; //increasing sample
+    } else {
+        if (minSize === 0) minSize = j - i - 1;
+        else minSize = Math.min(minSize, j - i - 1);
+        if (minSize === minGrpLen) return minGrpLen;
         search[gene[i]]--;
         i++;
-    } else {
-        search[gene[j]]++; //increasing sample
-        j++;
     }
 }
 
