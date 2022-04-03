@@ -66,8 +66,8 @@ once we find it, then we will reduce the size to find minimum length of samples 
 
 and we keep the minimum size of the window. we don't need to find bigger number of the window since the solution requires the min numbers.
 
-in below logic, I didn't limit the min size of window yet.
-(FYI). but it can be optimized even more by limiting the window size.
+since our target is finding only minimum size of substring,
+avoid making sample size bigger than existing minSize.
 
 ```js
 // count only exceeding factors to be reduced
@@ -95,18 +95,25 @@ if (isFound()) {
     return minGrpLen;
 }
 
-consoleLog({ search, factorsToChange, minGrpLen });
-// with window moving, find num of factorsToChange
+// with window moving, find num of factorsToChange.
+// when finding the right condition, make the sample size smaller.
+// when not finding the right condition, increase the sample size.
 i = 0;
 j = i + minGrpLen - 1;
 while (true) {
     if (!isFound()) {
         j++;
         if (j >= totalLen) break;
-        search[gene[++j]]++; //increasing sample
+
+        search[gene[j]]++; //increasing sample
+        if (minSize !== 0 && j - i + 1 > minSize) {
+            i++;
+            //if minSize is already smaller than this boundary,
+            //do not need to find another bigger answer
+        }
     } else {
-        if (minSize === 0) minSize = j - i - 1;
-        else minSize = Math.min(minSize, j - i - 1);
+        if (minSize === 0) minSize = j - i + 1;
+        else minSize = Math.min(minSize, j - i + 1);
         if (minSize === minGrpLen) return minGrpLen;
         search[gene[i]]--;
         i++;

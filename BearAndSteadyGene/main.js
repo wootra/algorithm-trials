@@ -30,7 +30,7 @@ function readLine() {
  */
 
 const consoleLog = (...args) => {
-    console.log(...args);
+    // console.log(...args);
 };
 
 function steadyGene(gene) {
@@ -72,7 +72,6 @@ function steadyGene(gene) {
     // tolerence is given as end-start%4 since they are extra length
 
     const search = { A: 0, C: 0, T: 0, G: 0 };
-    let len = factorsToChange;
     const isFound = () => {
         // if cannot find any of lower number,
         // it is the candidate
@@ -87,18 +86,25 @@ function steadyGene(gene) {
         return minGrpLen;
     }
 
-    consoleLog({ search, factorsToChange, minGrpLen });
     // with window moving, find num of factorsToChange
+    // when finding the right condition, make the sample size smaller.
+    // when not finding the right condition, increase the sample size.
     i = 0;
     j = i + minGrpLen - 1;
     while (true) {
         if (!isFound()) {
             j++;
             if (j >= totalLen) break;
-            search[gene[++j]]++; //increasing sample
+
+            search[gene[j]]++; //increasing sample
+            if (minSize !== 0 && j - i + 1 > minSize) {
+                i++;
+                //if minSize is already smaller than this boundary,
+                //do not need to find another bigger answer
+            }
         } else {
-            if (minSize === 0) minSize = j - i - 1;
-            else minSize = Math.min(minSize, j - i - 1);
+            if (minSize === 0) minSize = j - i + 1;
+            else minSize = Math.min(minSize, j - i + 1);
             if (minSize === minGrpLen) return minGrpLen;
             search[gene[i]]--;
             i++;

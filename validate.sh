@@ -1,4 +1,14 @@
 QUESTION=$1
+
+if [ -z $QUESTION ]; then
+  echo "usage: validate.sh {folderName} [verbose]";
+  echo "";
+  echo "folderName should not have / at the end";
+  echo "ex> ./validate.sh ./BearAndSteadyGene verbose";
+  echo "verbose is optional to see more information";
+  exit;
+fi
+
 OPT=$2
 echo "testing " $QUESTION
 cd $QUESTION

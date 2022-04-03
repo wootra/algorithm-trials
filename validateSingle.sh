@@ -1,5 +1,15 @@
 QUESTION=$1
 CASE=case$2
+
+if [ -z $QUESTION ]; then
+  echo "this runs only one test based on the case no";
+  echo "usage: validateSingle.sh {folderName} {caseNo}";
+  echo "";
+  echo "folderName should not have / at the end";
+  echo "ex> ./validate.sh ./BearAndSteadyGene 1";
+  exit;
+fi
+
 echo "testing " $QUESTION
 cd $QUESTION
 
