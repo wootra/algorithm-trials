@@ -30,11 +30,45 @@ function readLine() {
  */
 
 const consoleLog = (...args) => {
-    console.log(...args);
+    // console.log(...args);
 };
 
-function zigzagConversion(gene) {
-    return 'hey';
+function zigzagConversion(text, rows) {
+    const mat = [];
+    for (let i = 0; i < rows; i++) {
+        mat.push(Array(text.length).fill(''));
+    }
+    let x = 0,
+        y = 0;
+    let dir = 0; //0: down, 1: up-right
+    for (let i = 0; i < text.length; i++) {
+        mat[y][x] = text[i];
+        // console.log('-->', text[i]);
+        if (dir === 0) {
+            if (y + 1 === rows) {
+                dir = 1;
+                y--;
+                x++;
+            } else {
+                y++;
+            }
+        } else if (dir === 1) {
+            if (y - 1 < 0) {
+                dir = 0;
+                y++;
+            } else {
+                y--;
+                x++;
+            }
+        }
+    }
+    let txt = '';
+
+    for (let i = 0; i < mat.length; i++) {
+        consoleLog(mat[i].join(' '));
+        txt += mat[i].join('');
+    }
+    return txt;
 }
 
 function main() {
@@ -44,7 +78,7 @@ function main() {
 
     const fullText = readLine();
 
-    const result = zigzagConversion(fullText);
+    const result = zigzagConversion(fullText, n);
 
     ws.write(result + '\n');
 
