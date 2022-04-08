@@ -84,6 +84,18 @@ it handles 2D arrays. [here](./ZigzagConversion/README.md)
 
 ## FormingMagicSquares
 
+[more](./FormingMagicSquares/README.md)
 Forming Magic square with minimum changes.
 Simply create magic square, and make 8 variants.
 And Compare with test cases suming all the difference to find minimum differences.
+
+## AscendingOrder
+
+[more](./AcendingOrder/README.md)
+
+check if a matrix is alphabetically ascending both horizontally and vertically.
+
+## BalancedPartition
+
+[more](./BalancedPartition/README.md)
+if a tree with fileSize is given, find the best cut to be the most balanced.
