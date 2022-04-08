@@ -18,7 +18,7 @@ below is sample inputs
 1
 1
 3
-10
+10 <-- each node's file size
 20
 20
 50

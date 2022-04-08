@@ -58,7 +58,7 @@ case3 answer:
 ---------------------------
 ```
 
-### reset when not verbose
+### result when not verbose
 
 ```sh
 $ ./validate.sh FormingMagicSquares
