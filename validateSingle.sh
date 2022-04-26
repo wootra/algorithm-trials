@@ -1,5 +1,6 @@
 QUESTION=$1
 CASE=case$2
+verbose=$3
 
 if [ -z $QUESTION ]; then
   echo "this runs only one test based on the case no";
@@ -20,6 +21,7 @@ else
     echo "==> (X) $CASE failed!"
 fi
 
+if [ -z $verbose ]; then
 echo "==============";
 echo "$CASE output:";
 cat ./outputs/$CASE;
@@ -27,5 +29,5 @@ echo "==============";
 echo "$CASE answer:";
 cat ./answers/$CASE;
     echo "==============";
-
+fi
 echo "---------------------------"
