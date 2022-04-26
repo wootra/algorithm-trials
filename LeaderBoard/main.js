@@ -147,7 +147,7 @@ class TensNode {
         this.mod = Math.pow(10, powerOfTen);
         this.nodes = powerOfTen === 1 ? null : Array(10).fill(null); //if powerOfTen is 1, value is 0~9
         this.counts = Array(10).fill(0); //if powerOfTen is 1, value is 0~9
-        this.nodeCounts = Array(10).fill(0); //if powerOfTen is 1, value is 0~9
+        this.nodeCounts = powerOfTen === 1 ? null : Array(10).fill(0); //if powerOfTen is 1, value is 0~9
         this.powerOfTen = powerOfTen;
         this.totalCount = 0; // all children's node
         this.totalNodeCount = 0;
